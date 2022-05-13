@@ -3,7 +3,12 @@
    <application
         android:label="jumio_test"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false">
+
+        <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
