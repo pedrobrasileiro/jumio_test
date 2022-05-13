@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jumio_mobile_sdk_flutter/jumio_mobile_sdk_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    super.initState();
+
+    Jumio.init("AUTHORIZATION_TOKEN", "DATACENTER");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Center(
+          child: ElevatedButton(
+        child: const Text('Iniciar'),
+        onPressed: () async {
+          try {
+            final result = await Jumio.start();
+            debugPrint('result: $result');
+          } catch (e) {
+            debugPrint(e.toString());
+          }
+        },
+      )),
     );
   }
 }
